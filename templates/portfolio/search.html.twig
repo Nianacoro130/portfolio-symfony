@@ -1,0 +1,40 @@
+{% extends 'base.html.twig'%}
+
+{% block body %}
+<br>
+  <div class="container-lire" id="listrsearch" align="center">    
+    <div class="form-group">
+        <section id="content">
+        <br>
+            {% for message in app.flashes('erreur') %}
+              <div class="alert alert-dismissible alert-danger">
+                  {{ message }}
+              </div>{# message #}
+            {% endfor %}
+             
+        {% for projet in projets %}
+            <article>
+            <div class="card border-info r " id="projetRecents" style="max-width: 25rem;margin:1.5em;">
+                <div class="card-header bg-info mb-3">
+                   <h6>{{ projet.nom }}</h6>
+                </div>{# card-header#}
+                <div class="card-body a ">
+                  <h6 class="card-title">Ecrit le {{ projet.date | date('d/m/Y') }} à {{ projet.date | date('H:i') }}</h6>
+                  <p class="card-text">
+                      {{ projet.description | slice(0, 170) | raw }} ...
+                    </p>
+                    <a href="{{ path('detailsprojets', { 'id': projet.id}) }}" class="btn btn-primary">Lire</a>
+                </div>{# card-body#}
+            </div>{# card border#}
+            </article>
+        {% endfor %}
+
+        </section>
+            <div class="pagination">
+              {{ knp_pagination_render(projets) }}
+           </div>
+    </div>
+  </div> 
+{% endblock %}
+
+

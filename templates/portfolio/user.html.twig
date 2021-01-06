@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+{% form_theme formAdmin 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+ <br>
+ <div class="container" id="connect">
+    <h3><center>Connection</center></h3>
+    {{ form_start(formAdmin) }}
+    {{ form_row(formAdmin.pseudo,{'attr':{'placeholder':"Entrez votre pseudo"}}) }}
+    {{ form_row(formAdmin.password,{'attr':{'placeholder':"Entrez-votre mot de passe"}}) }}
+      
+      <center><button type="submit" class= "btn btn-success">Se connecter</center>
+ </div>
+
+
+    
+{% endblock %}

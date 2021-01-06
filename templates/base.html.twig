@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}Nianacoro Konaré Developpeur Web{% endblock %}</title>
+        <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+        <script src="script.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.rings.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+        
+        {% block stylesheets %}
+ {% endblock %}
+    </head>
+    <body>
+        <div id="vantarings"></div>
+        <script>
+            VANTA.RINGS({
+            el: "#vantarings",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            backgroundColor: 0xf3f9ff,
+            color: 0x828e6d
+            })
+        </script>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="{{ path('home') }}">Nianacoro Konaré </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon" ></span>
+            </button>
+
+            <div class="collapse navbar-collapse"  id="navbarColor01">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active" > 
+                            <a class="nav-link" href="{{ path('ReadProjet') }}">Projets</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_login') }}">Admin</a>
+                        </li>
+                        <!--li class="nav-item">
+                            <a class="nav-link" href="{{ path('modif') }}">Créer un  Projet</a>
+                        </li-->
+                        
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{path('app_logout')}}">Se deconnecter</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                    <form action="{{path('search')}}" method="POST" class="form-inline">
+                        <input class="form-control mr-sm-2" type="text"  id="search_nom" name="search[nom]" required="required"  placeholder="mot clé ...">
+                        <button class="btn btn-secondary r" type="submit">rechercher</button>
+                    </form>  
+            </div>                            
+        </nav>
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+
+        {% block body %}{% endblock %}<br><br><br><br><br>
+            <nav class="navbar fixed-bottom navbar-dark bg-primary">
+               <div class="container-footer" id="footer">
+                <div id="link">
+                    <a href="mailto:nianacorokonare@gmail.com" id="mail" class="filter-green" target="_blank"><img src="/img/icon/envelope-fill.svg" alt=""></a>
+                    <a href="https://github.com/Nianacoro130" id="github" class="filter-green" target="_blank"><img src="/img/icon/github.svg" alt=""></a>
+                    <a href="https://www.linkedin.com/in/nianacoro-konaré"  class="filter-green" id="linkedin" target="_blank"><img src="/img/icon/linkedin.svg" alt=""></a>
+                </div>
+                <div id="copyright">
+                <p>Copyright © Nianacoro Konaré</p>
+                </div>
+             </div>   
+            </nav>
+       
+        {% block javascripts %}
+        {% endblock %}
+    </body>
+</html>

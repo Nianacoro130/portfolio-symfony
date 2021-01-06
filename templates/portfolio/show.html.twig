@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<br>
+    <div class="container-details" align="center" id="detailsprojets"> 
+      <div class="card mb-3 border-info">
+      <div class="card-header bg-info mb-3">
+        <h3>{{projet.nom}} </h3>
+      </div>
+
+      <div class="card-body">
+        <h6 class="card-subtitle"><div class="metadata">mis à jour le {{projet.date | date ('d/m/Y') }} 
+                    à {{ projet.date |date ('H:i')}}
+        </div></h6>
+       <!--h6 class="card-subtitle text-muted">Support card subtitle</h6-->
+      </div>
+
+     <img src="{{ projet.image }}" class="d-block user-select-none b" focusable="false" role="img" preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180" >
+    
+      <div class="card-body">
+        <p class="card-text">{{projet.description | raw }}</p>
+      </div>
+    </div>       
+                      
+{% endblock %}
+

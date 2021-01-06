@@ -1,0 +1,27 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    {% if projets is defined %}
+        {% for projet in projets %}
+            <br>
+            <div class="container-projets" id="listprojets" align="center">
+                <div class="card mb-4" >   
+                    <div class="card-header bg-success mb-3"><h3>{{projet.nom}}</h3></div>       
+                    <div class="metadata">mis à jour le {{projet.date | date ('d/m/Y') }} 
+                        à {{ projet.date |date ('H:i')}}
+                    </div>
+                    <div class="content">
+                        <img src= "{{ projet.image }}" alt="" class="d-block user-select-none" >
+                        <p>{{ projet.description |raw }}<p>
+                         <a href="{{ path('detailsprojets', { 'id': projet.id}) }}" class="btn btn-primary">Lire</a>
+                    </div>    
+                </div>
+            </div>                 
+        {% endfor %}   
+    {% else %}
+        No projets found.
+    {% endif %}   
+{% endblock %}    
+
+
+ 
+ 
